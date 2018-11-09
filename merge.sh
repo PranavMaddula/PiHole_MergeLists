@@ -25,8 +25,8 @@ cat  merge/merged_clean.txt >>  merge/merged.txt
 #remove duplicates
 #awk '{!seen[$0]++}' merge/merged.txt	#output supressed
 awk '!seen[$0]++' merge/merged.txt	#with output
-mv merge/merged.txt final.txt
-cp final.txt final/final.txt
+rm -rf final/*
+cp merge/merged.txt final/final.txt
 
 cd final
 split -n l/5 --additional-suffix .txt final.txt merge.part_
@@ -38,4 +38,6 @@ cd ..
 rm -rf output/*
 rm -rf zips/*.zip
 rm -rf zips/output/*
-rm -rf  merge/*
+rm -rf merge/merged_dirty.txt
+rm -rf merge/merged_clean.txt
+
